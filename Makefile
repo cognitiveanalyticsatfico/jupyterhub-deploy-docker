@@ -19,9 +19,9 @@ secrets/postgres.env:
 	@echo "Generating postgres password in $@"
 	@echo "POSTGRES_PASSWORD=$(shell openssl rand -hex 32)" > $@
 
-secrets/oauth.env:
-	@echo "Need oauth.env file in secrets with GitHub parameters"
-	@exit 1
+# secrets/oauth.env:
+# 	@echo "Need oauth.env file in secrets with GitHub parameters"
+# 	@exit 1
 
 secrets/jupyterhub.crt:
 	@echo "Need an SSL certificate in secrets/jupyterhub.crt"
@@ -45,7 +45,8 @@ else
 	cert_files=
 endif
 
-check-files: userlist $(cert_files) secrets/oauth.env secrets/postgres.env
+# check-files: userlist $(cert_files) secrets/oauth.env secrets/postgres.env
+check-files: userlist $(cert_files) secrets/postgres.env
 
 pull:
 	docker pull $(DOCKER_NOTEBOOK_IMAGE)
