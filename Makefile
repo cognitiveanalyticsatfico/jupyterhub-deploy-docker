@@ -48,10 +48,12 @@ endif
 # check-files: userlist $(cert_files) secrets/oauth.env secrets/postgres.env
 check-files: userlist $(cert_files) secrets/postgres.env
 
+buildlocal:
+	docker build $(DOCKER_NOTEBOOK_IMAGE)
 pull:
 	docker pull $(DOCKER_NOTEBOOK_IMAGE)
 
-notebook_image: pull
+notebook_image: buildlocal
 
 build: check-files network volumes
 	docker-compose build
